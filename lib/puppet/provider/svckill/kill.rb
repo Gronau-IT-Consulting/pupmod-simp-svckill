@@ -137,7 +137,7 @@ Puppet::Type.type(:svckill).provide(:kill) do
         if res[:ensure].eql?(:running)
           @running_services[obj[:name]] = obj.provider
         end
-      elsif [:redhat,:systemd].include?(res[:provider])
+      elsif [:redhat,:debian,:systemd].include?(res[:provider])
         if res[:enable].to_s.eql?("true") || res[:ensure].eql?(:running)
           @running_services[obj[:name]] = {
             :provider => obj.provider,
